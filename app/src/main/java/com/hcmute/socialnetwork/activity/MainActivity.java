@@ -1,8 +1,10 @@
-package com.hcmute.socialnetwork;
+package com.hcmute.socialnetwork.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.hcmute.socialnetwork.R;
 
 public class MainActivity extends AppCompatActivity {
 
