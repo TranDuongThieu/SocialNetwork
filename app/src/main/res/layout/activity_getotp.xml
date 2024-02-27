@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtGetotpTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nhập mã xác nhận"
+            android:textSize="25dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            />
+        <TextView
+            android:id="@+id/txtSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Để xác nhận tài khoản của bạn, hãy nhập mã gồm 6 chữ số mà chúng tôi đã gửi đến tài khoản gmail"
+            android:textSize="15sp"
+            />
+        <EditText
+            android:id="@+id/edtsetOTP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã xác nhận"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:background="@drawable/custom_edt_email_pass"
+            android:paddingLeft="12dp"
+            android:layout_marginTop="25dp"
+            >
+            <requestFocus/>
+        </EditText>
+
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_btn_login"
+            android:text="Tiếp"
+            android:textSize="15sp"
+            android:fontFamily="sans-serif-light"
+
+            app:backgroundTint="@null"
+             />
+
+        <Button
+            android:id="@+id/btnReturnotp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_btn_otp"
+            android:fontFamily="sans-serif-light"
+            android:text="Tôi không nhận được mã"
+            android:textSize="15sp"
+            app:backgroundTint="@null"
+            android:textColor="#202D35"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

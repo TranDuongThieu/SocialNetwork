@@ -26,21 +26,23 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        TextView registerBtn = findViewById(R.id.btnRegister);
+        // Thiết lập null cho action bar
+        getSupportActionBar().setTitle("");
+        // Tham chiếu Id
+        Button registerBtn = findViewById(R.id.btnRegister);
         Button loginBtn = findViewById(R.id.btnLogin);
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                finish();
+                startActivity(new Intent(LoginActivity.this, RegisterwithEmail_Activity.class));
+                //finish();
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText emailEditText = findViewById(R.id.email);
-                EditText passwordEditText = findViewById(R.id.password);
+                EditText emailEditText = findViewById(R.id.edtEmail);
+                EditText passwordEditText = findViewById(R.id.edtPass);
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 

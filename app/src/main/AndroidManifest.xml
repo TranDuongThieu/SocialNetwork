@@ -10,11 +10,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SocialNetwork"
-        tools:targetApi="31">
+        android:theme="@style/AppTheme"
+        tools:targetApi="31"
+
+    >
         <activity
-            android:name=".activity.authen.RegisterActivity"
-            android:exported="false" />
+            android:name=".activity.authen.RegisterwithEmail_Activity"
+            android:exported="false"
+            android:parentActivityName=".activity.authen.LoginActivity"
+            />
         <activity
             android:name=".activity.authen.LoginActivity"
             android:exported="true">
@@ -26,7 +30,9 @@
         </activity>
         <activity
             android:name=".activity.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+
+        </activity>
     </application>
 
 </manifest>
