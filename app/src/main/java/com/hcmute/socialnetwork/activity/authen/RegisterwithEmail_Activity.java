@@ -27,6 +27,7 @@ public class RegisterwithEmail_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register_email);
         // Thiết lập null cho action bar
         // Thiết lập button back cho register
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getSupportActionBar().setTitle("");
