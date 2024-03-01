@@ -12,7 +12,7 @@ public class User {
     private String gender;
     private LocalDate dateOfBirth;
     private String phoneNumber;
-    private String avatar;
+    private int avatar;
     private ArrayList<String> blogs;
     private ArrayList<String> followers;
     private ArrayList<String> followings;
@@ -21,7 +21,7 @@ public class User {
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, String avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+    public User(String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -83,11 +83,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAvatar() {
+    public int getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(int avatar) {
         this.avatar = avatar;
     }
 
