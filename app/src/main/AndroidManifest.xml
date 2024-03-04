@@ -25,8 +25,17 @@
             android:name=".activity.authen.RegisterwithEmail_Activity"
             android:exported="false"
             android:parentActivityName=".activity.authen.LoginActivity" />
+<!--        <activity-->
+<!--            android:name=".activity.authen.LoginActivity"-->
+<!--            android:exported="true" >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
-            android:name=".activity.authen.LoginActivity"
+            android:name=".activity.home.ProfileUser"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
