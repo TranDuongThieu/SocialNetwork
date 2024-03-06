@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -34,15 +33,16 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterwithEmail_Activity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 //finish();
             }
         });
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText emailEditText = findViewById(R.id.edtEmail);
-                EditText passwordEditText = findViewById(R.id.edtPass);
+
+                EditText emailEditText = findViewById(R.id.edtLoginEmailorPhone);
+                EditText passwordEditText = findViewById(R.id.edtLoginPass);
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
 

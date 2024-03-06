@@ -1,9 +1,10 @@
 package com.hcmute.socialnetwork.model;
 
+import com.google.firebase.Timestamp;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class User {
     private String email;
@@ -18,7 +19,7 @@ public class User {
     private ArrayList<String> followings;
     private ArrayList<Notification> notifications;
 
-    public User() {
+    public User(String phoneNumber, String firstName, String lastName, Timestamp now) {
     }
 
     public User(String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, String avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {

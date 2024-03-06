@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
 
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,10 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31"
-
     >
+
         <activity
-            android:name=".activity.authen.RegisterwithEmail_Activity"
+            android:name=".activity.authen.GetOTP"
+            android:exported="false"
+            android:parentActivityName=".activity.authen.RegisterActivity"
+            />
+        <activity
+            android:name=".activity.authen.InforLoginActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.authen.GetOTP"
+            />
+        <activity
+            android:name=".activity.authen.RegisterwithEmailActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.authen.RegisterActivity"
+            />
+        <activity
+            android:name=".activity.authen.RegisterActivity"
             android:exported="false"
             android:parentActivityName=".activity.authen.LoginActivity"
             />
