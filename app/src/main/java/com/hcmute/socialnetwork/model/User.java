@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class User {
+    private String userId;
+
+
     private String email;
     private String firstName;
     private String lastName;
@@ -21,7 +24,8 @@ public class User {
     public User() {
     }
 
-    public User(String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+    public User(String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+        this.userId = userId;
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,6 +37,14 @@ public class User {
         this.followers = followers;
         this.followings = followings;
         this.notifications = notifications;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {

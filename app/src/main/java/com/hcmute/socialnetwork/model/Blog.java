@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Blog {
+
+
+    private String blogId;
     private int thumbnail;
     private ArrayList<String> video;
     private String description;
@@ -12,6 +15,14 @@ public class Blog {
     private String postedBy;
     private ArrayList<String> likes;
     private ArrayList<Comment> comments;
+
+    public String getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
+    }
 
     public int getThumbnail() {
         return thumbnail;
@@ -71,7 +82,9 @@ public class Blog {
 
     public Blog() {
     }
-    public Blog(int thumbnail, ArrayList<String> video, String description, LocalDateTime postedAt, String postedBy, ArrayList<String> likes, ArrayList<Comment> comments) {
+
+    public Blog(String blogId, int thumbnail, ArrayList<String> video, String description, LocalDateTime postedAt, String postedBy, ArrayList<String> likes, ArrayList<Comment> comments) {
+        this.blogId = blogId;
         this.thumbnail = thumbnail;
         this.video = video;
         this.description = description;
@@ -82,8 +95,7 @@ public class Blog {
     }
 
 
-
-    public static class Comment{
+    public static class Comment {
         private String userId;
         private String content;
         private LocalDateTime commentedAt;

@@ -7,14 +7,13 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.activity.adapter.PostListAdapter;
+import com.hcmute.socialnetwork.adapter.PostListAdapter;
 import com.hcmute.socialnetwork.model.Blog;
 import com.hcmute.socialnetwork.model.User;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.time.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Home extends AppCompatActivity {
 
@@ -24,21 +23,18 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         User user = new User();
+        user.setUserId("1");
         user.setFirstName("Tran");
         user.setLastName("Thiu");
-        user.setAvatar(R.drawable.logo_instagram);
+        user.setAvatar(R.drawable.thumb1);
 
         Blog blog = createFakeBlog(user, R.drawable.logo_instagram);
         Blog blog1 = createFakeBlog(user, R.drawable.thumb1);
         ArrayList<Blog> blogList = new ArrayList<Blog>();
-        ArrayList<User> likes = new ArrayList<User>();
-        likes.add(user);
         blogList.add(blog);
         blogList.add(blog1);
-        blogList.add(blog);
-        blogList.add(blog1);
-        blogList.add(blog);
-        PostListAdapter postListAdapter = new PostListAdapter(user, blogList, likes);
+
+        PostListAdapter postListAdapter = new PostListAdapter(user, blogList);
         ListView postList = findViewById(R.id.lvHomePost);
         postList.setAdapter(postListAdapter);
 
@@ -57,7 +53,8 @@ public class Home extends AppCompatActivity {
 
         // Set posted date and time
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            blog.setPostedAt(LocalDateTime.of(2024, 2, 28, 6, 20));
+            Random rand = new Random();
+            blog.setPostedAt(LocalDateTime.of(2023, rand.nextInt(12) +1, rand.nextInt(28) +1, 6, 20));
         }
 
         // Set posted by user

@@ -5,56 +5,101 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingVertical="10dp"
     tools:context=".activity.home.Post">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
 
-        <ImageView
-            android:id="@+id/imgPostAvt"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            app:srcCompat="@drawable/custom_avt" />
-
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/txtPostName"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgPostAvt"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/thumb1"
+                app:civ_border_color="#FF000000" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="name"
-                android:textStyle="bold" />
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtPostName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
 
         </LinearLayout>
 
+        <ImageButton
+            android:id="@+id/btnPostMore"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="5dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/more_icon" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgPostThumb"
-        android:layout_width="match_parent"
-        android:layout_height="314dp"
-        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
+        <ImageView
+            android:id="@+id/imgPostThumb"
+            android:layout_width="match_parent"
+            android:layout_height="314dp"
+            android:layout_marginBottom="10dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:ignore="MissingConstraints" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/imgPostHeartIcon"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/fill_heart_icon"
+            app:layout_constraintTop_toTopOf="@id/imgPostThumb"
+            app:layout_constraintBottom_toBottomOf="@id/imgPostThumb"
+            app:layout_constraintEnd_toEndOf="@id/imgPostThumb"
+            app:layout_constraintStart_toStartOf="@id/imgPostThumb"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    <VideoView-->
+    <!--        android:id="@+id/videoPostThumb"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="314dp"-->
+    <!--        android:layout_marginBottom="10dp"-->
+    <!--        android:visibility="invisible" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="horizontal">
 
@@ -62,30 +107,29 @@
                 android:id="@+id/btnPostLike"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/heart_ic" />
+                android:src="@drawable/heart_icon" />
 
             <ImageButton
                 android:id="@+id/btnPostComment"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginHorizontal="5dp"
+                android:layout_marginHorizontal="10dp"
                 android:background="@android:color/transparent"
                 android:padding="0dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/comment_ic" />
-
+                android:src="@drawable/comment_icon" />
 
             <ImageButton
                 android:id="@+id/btnPostShare"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/send_ic" />
+                android:src="@drawable/send_icon" />
 
 
         </LinearLayout>
@@ -96,13 +140,13 @@
             android:layout_height="24dp"
             android:layout_gravity="end"
             android:layout_marginHorizontal="5dp"
-            app:srcCompat="@drawable/bookmark_ic" />
+            app:srcCompat="@drawable/bookmark_icon" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -124,7 +168,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal">
 
         <TextView
@@ -146,26 +190,30 @@
         android:id="@+id/loPostSeeCmt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:alpha="0.7"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Xem tất cả" />
+            android:text="Xem tất cả"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtPostCmt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="5dp"
-            android:text="155" />
+            android:text="155"
+            android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:text="bình luận" />
+            android:text="bình luận"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -177,8 +225,11 @@
             android:id="@+id/txtPostDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:alpha="0.7"
-            android:text="2 ngày trước" />
+            android:text="2 ngày trước"
+            android:textSize="14sp" />
     </LinearLayout>
+
+
 </LinearLayout>
