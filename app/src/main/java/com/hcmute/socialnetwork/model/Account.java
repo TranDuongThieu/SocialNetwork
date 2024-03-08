@@ -1,24 +1,29 @@
 package com.hcmute.socialnetwork.model;
 
+import com.google.firebase.Timestamp;
+
 public class Account {
-    private String email;
+    private String phone;
     private String password;
     private String otp;
+    public Account(String phoneNumber, String password, String otp, Timestamp now) {
+    }
+
     public Account() {
     }
 
-    public Account(String email, String password, String otp) {
-        this.email = email;
+    public Account(String phone, String password, String otp) {
+        this.phone = phone;
         this.password = password;
         this.otp = otp;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getPassword() {
@@ -36,6 +41,4 @@ public class Account {
     public void setOtp(String otp) {
         this.otp = otp;
     }
-
-
 }
