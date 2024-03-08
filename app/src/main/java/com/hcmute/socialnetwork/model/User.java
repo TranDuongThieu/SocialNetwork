@@ -22,6 +22,9 @@ public class User {
     public User(String phoneNumber, String firstName, String lastName, Timestamp now) {
     }
 
+    public User() {
+    }
+
     public User(String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, String avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
         this.email = email;
         this.firstName = firstName;

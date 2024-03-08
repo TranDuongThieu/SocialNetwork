@@ -36,6 +36,7 @@ public class GetOTP extends CustomActionBarActivity {
     Button btnNext, btnResentOtp;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
     PhoneAuthProvider.ForceResendingToken resendingToken;
+    String enteredOtp;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_getotp);
@@ -51,7 +52,7 @@ public class GetOTP extends CustomActionBarActivity {
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String enteredOtp = otpInput.getText().toString();
+                enteredOtp = otpInput.getText().toString();
                 Log.d(TAG, "onclick=> enterOTP----> " + enteredOtp);
                 Log.d(TAG, "onclick=> verificationCode----> " + verificationCode);
                 // code lỗi
@@ -59,7 +60,6 @@ public class GetOTP extends CustomActionBarActivity {
                 Singin(credential);
             }
         });
-
         btnResentOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +77,12 @@ public class GetOTP extends CustomActionBarActivity {
                     // đặt intent nhầm để xíu sửa
                     AdroidUtils.showToast(getApplicationContext(),"Xác minh OTP thành công:)");
                     Intent myIntent = new Intent(GetOTP.this, InforLoginActivity.class);
-                    myIntent.putExtra("phone",phoneNumber);
+                    Bundle bundle = new Bundle();
+                    // Đưa số điện thoại vào Bundle
+                    bundle.putString("phone", phoneNumber);
+                    // Đưa mã OTP vào Bundle
+                    bundle.putString("otp", enteredOtp);
+                    myIntent.putExtras(bundle);
                     startActivity(myIntent);
                 }else {
                     AdroidUtils.showToast(getApplicationContext(),"Xác minh OTP không thành công:(");

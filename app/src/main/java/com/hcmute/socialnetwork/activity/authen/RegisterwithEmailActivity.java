@@ -49,11 +49,11 @@ public class RegisterwithEmailActivity extends CustomActionBarActivity {
                 String confirmPassword = confirmPasswordEditText.getText().toString();
 
                 if (!Validate.isEmailValid(email)) {
-                    Toast.makeText(RegisterwithEmailActivity.this, "Invalid email address", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterwithEmailActivity.this, "Địa chỉ email không hợp lệ", Toast.LENGTH_SHORT).show();
                 } else if (!Validate.isPasswordValid(password)) {
-                    Toast.makeText(RegisterwithEmailActivity.this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterwithEmailActivity.this, "Mật khẩu phải chứa ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
                 } else if (!password.equals(confirmPassword)) {
-                    Toast.makeText(RegisterwithEmailActivity.this, "Confirm Password does not match", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterwithEmailActivity.this, "Xác nhận mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 } else {
                     // Proceed with registration
                     auth = FirebaseAuth.getInstance();
@@ -71,7 +71,6 @@ public class RegisterwithEmailActivity extends CustomActionBarActivity {
                                     }
                                 }
                             });
-
                 }
             }
         });

@@ -38,18 +38,14 @@ public class RegisterActivity extends CustomActionBarActivity {
         setupActionBar();
         // tham chiêu ID
         findID();
-        // Bắt lệnh click btn Next khi nhập số điện thoại ( sẽ gửi mã OTP về số điện thoại )
-
         // đăng kí mã quốc gia
         cpp.registerCarrierNumberEditText(edtRegisterPhone);
         btnRegisterNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    // && edtRegisterPhone.getText().toString().length() == 9
-                if (!edtRegisterPhone.getText().toString().isEmpty() && edtRegisterPhone.getText().toString().length() >= 9) {
-                       // String phoneNumber = "+" + cpp.getSelectedCountryCode() + edtRegisterPhone.getText().toString();
-                        Log.d(TAG, "onclick=> PHONE NUMBER----> " + cpp);
+                if (!edtRegisterPhone.getText().toString().isEmpty() && edtRegisterPhone.getText().toString().length() >= 9 && edtRegisterPhone.getText().toString().length() <=11) {
                         // Tạo Intent và đặt dữ liệu vào nó
+
                         Intent intent = new Intent(RegisterActivity.this, GetOTP.class);
                         intent.putExtra("phone", cpp.getFullNumberWithPlus());
                         // Mở GetOTP Activity với Intent đã được đặt dữ liệu
