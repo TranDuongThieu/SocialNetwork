@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,9 +32,10 @@ import com.hcmute.socialnetwork.utils.FirebaseUtils;
 
 public class InforLoginActivity extends CustomActionBarActivity {
     EditText edtInforFName, edtInforLName, edtInforPass, edtInforCfPass;
+    TextView txtInforLoginCreateName;
     Button btnNext;
     public static int i =0;
-    String phoneNumber,otp;
+    String phoneNumber,otp, idFgPass;
     User userModel;
     Account accountModel;
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +43,16 @@ public class InforLoginActivity extends CustomActionBarActivity {
         setContentView(R.layout.activity_inforlogin);
         setupActionBar();
         findID();
-
-
+        idFgPass = getIntent().getExtras().getString("fgPass");
         Intent intent = getIntent();
         getMyIntent(intent);
+        // Nếu đổi mật khẩu thì ẩn 2 thuộc tính này
+        if(idFgPass.equals("1"))
+        {
+            edtInforFName.setVisibility(View.GONE);
+            edtInforLName.setVisibility(View.GONE);
+            txtInforLoginCreateName.setText("Tạo mật khẩu mới");
+        }
         // lay du lieu do vao User
         //getInforUser();
         // click next
@@ -77,26 +85,28 @@ public class InforLoginActivity extends CustomActionBarActivity {
         String cfPass = edtInforCfPass.getText().toString();
         String firstName = edtInforFName.getText().toString();
         String lastName = edtInforLName.getText().toString();
-        if(firstName.isEmpty()) {
+
+        if(firstName.isEmpty() && !idFgPass.equals("1")) {
             edtInforFName.setError("Nhập họ của bạn");
             return;
         }
-
-        if(lastName.isEmpty()) {
+        if(lastName.isEmpty() && !idFgPass.equals("1")) {
             edtInforLName.setError("Nhập tên của bạn");
             return;
         }
-
         if(password.isEmpty()) {
             edtInforPass.setError("Nhập mật khẩu của bạn");
             return;
         }
-
         if(cfPass.isEmpty()) {
             edtInforCfPass.setError("Xác nhận mật khẩu của bạn");
             return;
         }
-            // nếu có 1 đối tượng usermodel được tạo thì gán giá trị cho nó
+        if(!password.equals(cfPass)){
+            edtInforPass.setError("Mật khẩu không trùng khớp");
+            return;
+        }
+        // nếu có 1 đối tượng usermodel được tạo thì gán giá trị cho nó
         userModel = new User(phoneNumber,firstName,lastName, Timestamp.now());
         userModel.setFirstName(firstName);
         userModel.setLastName(lastName);
@@ -105,13 +115,11 @@ public class InforLoginActivity extends CustomActionBarActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Intent intent = new Intent(InforLoginActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
                     createAccountinFireBase(phoneNumber,password,cfPass);
                 }
             }
         });
+
     }
 
     private void findID() {
@@ -120,6 +128,7 @@ public class InforLoginActivity extends CustomActionBarActivity {
         edtInforPass = findViewById(R.id.edtInforLoginPass);
         edtInforCfPass = findViewById(R.id.edtInforLoginCfPass);
         btnNext = findViewById(R.id.btnInforLoginNext);
+        txtInforLoginCreateName = findViewById(R.id.txtInforLoginCreateName);
     }
 
 
@@ -142,9 +151,6 @@ public class InforLoginActivity extends CustomActionBarActivity {
                         }
                     });
                 }
-            } else {
-                // Hai chuỗi không giống nhau
-                AdroidUtils.showToast(getApplicationContext(),"Mật khẩu không trùng khớp");
             }
     }
 }

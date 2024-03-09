@@ -32,7 +32,8 @@ import com.hcmute.socialnetwork.helper.Validate;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-
+    Button registerBtn,loginBtn,btnForgotpassword;
+    EditText emailOrPhoneEditText,  passwordEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         // Thiết lập null cho action bar
         getSupportActionBar().setTitle("");
         // Tham chiếu Id
-        Button registerBtn = findViewById(R.id.btnRegister);
-        Button loginBtn = findViewById(R.id.btnLogin);
-        Button btnForgotpassword = findViewById(R.id.btnForgotpassword);
-        EditText emailOrPhoneEditText = findViewById(R.id.edtLoginEmailorPhone);
-
-
+        init();
 
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText emailOrPhoneEditText = findViewById(R.id.edtLoginEmailorPhone);
-                EditText passwordEditText = findViewById(R.id.edtLoginPass);
                 String emailOrPhone = emailOrPhoneEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 if (emailOrPhone.isEmpty() || password.isEmpty()) {
@@ -83,13 +77,21 @@ public class LoginActivity extends AppCompatActivity {
         btnForgotpassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String fgPass = "1111111";
+                String fgPass = "1";
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 intent.putExtra("fgPass", fgPass);
                 startActivity(intent);
                 finish();
             }
         });
+    }
+
+    public void init(){
+        registerBtn = findViewById(R.id.btnRegister);
+        loginBtn = findViewById(R.id.btnLogin);
+        btnForgotpassword = findViewById(R.id.btnForgotpassword);
+        emailOrPhoneEditText = findViewById(R.id.edtLoginEmailorPhone);
+        passwordEditText = findViewById(R.id.edtLoginPass);
     }
 
     private void signInWithPhoneNumber(String emailOrPhone, String passWord) {

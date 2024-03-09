@@ -30,7 +30,6 @@ import java.util.concurrent.TimeUnit;
 public class RegisterActivity extends CustomActionBarActivity {
     EditText edtRegisterPhone;
     Button btnRegisterNext,btnRegisterEmail,btnRegisterHaveAccount;
-
     CountryCodePicker cpp;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +37,9 @@ public class RegisterActivity extends CustomActionBarActivity {
         setupActionBar();
         // tham chiêu ID
         findID();
+        // lấy mã intent để phân biệt là đổi quên mk hay đăng kí tài khoản
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("fgPass");
         // đăng kí mã quốc gia
         cpp.registerCarrierNumberEditText(edtRegisterPhone);
         btnRegisterNext.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,7 @@ public class RegisterActivity extends CustomActionBarActivity {
 
                         Intent intent = new Intent(RegisterActivity.this, GetOTP.class);
                         intent.putExtra("phone", cpp.getFullNumberWithPlus());
+                        intent.putExtra("fgPass", id);
                         // Mở GetOTP Activity với Intent đã được đặt dữ liệu
                         startActivity(intent);
                 }else {
