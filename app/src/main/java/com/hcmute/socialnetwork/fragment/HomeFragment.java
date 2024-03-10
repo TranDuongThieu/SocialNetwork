@@ -1,66 +1,97 @@
 package com.hcmute.socialnetwork.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.hcmute.socialnetwork.R;
+import com.hcmute.socialnetwork.adapter.PostListAdapter;
+import com.hcmute.socialnetwork.model.Blog;
+import com.hcmute.socialnetwork.model.User;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HomeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Random;
+
 public class HomeFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HomeFragment newInstance(String param1, String param2) {
-        HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        User user = new User();
+        user.setUserId("1");
+        user.setFirstName("Tran");
+        user.setLastName("Thiu");
+        user.setAvatar(R.drawable.thumb1);
+
+        Blog blog = createFakeBlog(user, R.drawable.logo_instagram);
+        Blog blog1 = createFakeBlog(user, R.drawable.thumb1);
+        ArrayList<Blog> blogList = new ArrayList<>();
+        blogList.add(blog);
+        blogList.add(blog1);
+
+        PostListAdapter postListAdapter = new PostListAdapter(user, blogList);
+        ListView postList = view.findViewById(R.id.lvHomePost);
+        postList.setAdapter(postListAdapter);
+
+        return view;
+    }
+
+    private static Blog createFakeBlog(User user, int thumb) {
+        Blog blog = new Blog();
+
+        // Set thumbnail (assuming it's an integer, replace with appropriate data)
+        blog.setThumbnail(thumb);
+
+        blog.setDescription("This is a fake blog post.");
+
+        // Set posted date and time
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            Random rand = new Random();
+            blog.setPostedAt(LocalDateTime.of(2023, rand.nextInt(12) + 1, rand.nextInt(28) + 1, 6, 20));
         }
+
+        // Set posted by user
+        blog.setPostedBy(user.getFirstName() + " " + user.getLastName());
+
+        // Set likes (replace with user IDs who liked the blog)
+        ArrayList<String> likes = new ArrayList<>();
+        likes.add("user1");
+        likes.add("user2");
+        blog.setLikes(likes);
+
+        // Set comments (replace with fake comments)
+        ArrayList<Blog.Comment> comments = createFakeComments(user);
+        blog.setComments(comments);
+
+        return blog;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+    private static ArrayList<Blog.Comment> createFakeComments(User user) {
+        ArrayList<Blog.Comment> comments = new ArrayList<>();
+
+        // Create fake comments
+        Blog.Comment comment1 = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            comment1 = new Blog.Comment("user1", "Great post!", LocalDateTime.now(), new ArrayList<>());
+        }
+        Blog.Comment comment2 = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            comment2 = new Blog.Comment("user2", "Nice content!", LocalDateTime.now().minusHours(1), new ArrayList<>());
+        }
+
+        comments.add(comment1);
+        comments.add(comment2);
+
+        return comments;
     }
 }

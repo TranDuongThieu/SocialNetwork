@@ -15,9 +15,9 @@
         <activity
             android:name=".activity.common.Footer"
             android:exported="false" />
-        <activity
-            android:name=".activity.home.Home"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".activity.home.Home"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".activity.home.Post"
             android:exported="false" />
