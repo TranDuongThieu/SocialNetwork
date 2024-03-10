@@ -1,4 +1,4 @@
-package com.hcmute.socialnetwork.activity.adapter;
+package com.hcmute.socialnetwork.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

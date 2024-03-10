@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.fragment.HomeFragment;
 import com.hcmute.socialnetwork.fragment.PostFragment;
+import com.hcmute.socialnetwork.fragment.ProfileFragment;
 import com.hcmute.socialnetwork.fragment.ReelFragment;
 import com.hcmute.socialnetwork.fragment.SearchFragment;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         for (ImageView imageView : imageList) {
             imageView.setAlpha(0.6f);
         }
-        replaceFragment(new HomeFragment());
+        replaceFragment(new ProfileFragment());
     }
 
     private void setActive(ArrayList<ImageView> imgList, ImageView active) {
