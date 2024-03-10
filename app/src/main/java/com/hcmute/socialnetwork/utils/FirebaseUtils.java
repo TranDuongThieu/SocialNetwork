@@ -17,5 +17,4 @@ public class FirebaseUtils {
     public  static DocumentReference accountDetail(){
         return FirebaseFirestore.getInstance().collection("account").document(curentUserId());
     }
-
 }
