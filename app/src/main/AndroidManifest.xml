@@ -17,6 +17,14 @@
     >
 
         <activity
+<!--        <activity-->
+<!--            android:name=".activity.home.Home"-->
+<!--            android:exported="false" />-->
+        <activity
+            android:name=".activity.home.Post"
+            android:exported="false" />
+        <activity
+            android:name=".activity.authen.RegisterwithEmail_Activity"
             android:name=".activity.authen.GetOTP"
             android:exported="false"
             android:parentActivityName=".activity.authen.RegisterActivity"
@@ -39,16 +47,16 @@
         <activity
             android:name=".activity.authen.LoginActivity"
             android:exported="true">
+
+        </activity>
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:exported="true">
-
         </activity>
     </application>
 

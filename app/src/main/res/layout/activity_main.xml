@@ -1,32 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
+    <FrameLayout
+        android:id="@+id/frameMainLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/custom_bottom_nav_shadow"
+        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/action_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            android:padding="12dp"
+            android:alpha="1"
+            android:src="@drawable/home_icon" />
 
-        <Button
-            android:id="@+id/logoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Logout" />
+        <ImageView
+            android:id="@+id/action_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            android:alpha="1"
+            android:padding="12dp"
+            android:src="@drawable/search_icon" />
+
+        <ImageView
+            android:id="@+id/action_post"
+            android:alpha="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            android:padding="10dp"
+            android:src="@drawable/square_plus_icon" />
+
+        <ImageView
+            android:id="@+id/action_video"
+            android:layout_width="0dp"
+            android:alpha="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onItemClick"
+            android:padding="12dp"
+            android:src="@drawable/video_icon" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/action_profile"
+            android:alpha="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:onClick="onItemClick2"
+            android:padding="12dp"
+            android:src="@drawable/user_icon" />
+
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
