@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit;
 
 public class GetOTP extends CustomActionBarActivity {
 
-    String phoneNumber, verificationCode;
+    String phoneNumber, verificationCode,fgPass;
     Long timeoutSecond = 60L;
     EditText otpInput;
     Button btnNext, btnResentOtp;
@@ -43,6 +43,8 @@ public class GetOTP extends CustomActionBarActivity {
         // Setup back và actionBar bên trên
         setupActionBar();
         // Bắt intent để lấy số điện thoại
+
+        fgPass = getIntent().getExtras().getString("fgPass");
         phoneNumber = getIntent().getExtras().getString("phone");
         //Toast.makeText(getApplicationContext(),phoneNumber, Toast.LENGTH_SHORT).show();
         // tham chiếu ID
@@ -83,6 +85,7 @@ public class GetOTP extends CustomActionBarActivity {
                     // Đưa mã OTP vào Bundle
                     bundle.putString("otp", enteredOtp);
                     myIntent.putExtras(bundle);
+                    myIntent.putExtra("fgPass", fgPass);
                     startActivity(myIntent);
                 }else {
                     AdroidUtils.showToast(getApplicationContext(),"Xác minh OTP không thành công:(");
