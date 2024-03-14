@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.media.Image;
+import android.media.session.PlaybackState;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.widget.RadioGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.hcmute.socialnetwork.R;
+import com.hcmute.socialnetwork.activity.CustomActionBar.CustomActionBarActivity;
 import com.hcmute.socialnetwork.fragment.HomeFragment;
 import com.hcmute.socialnetwork.fragment.PostFragment;
 import com.hcmute.socialnetwork.fragment.ProfileFragment;
@@ -29,13 +31,14 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends CustomActionBarActivity {
     private FrameLayout frameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupActionBar();
 
         frameLayout = findViewById(R.id.frameMainLayout);
         ArrayList<ImageView> imageList = new ArrayList<>();

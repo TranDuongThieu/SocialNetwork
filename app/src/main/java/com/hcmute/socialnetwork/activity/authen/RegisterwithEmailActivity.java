@@ -67,7 +67,7 @@ public class RegisterwithEmailActivity extends CustomActionBarActivity {
                                                 Toast.LENGTH_SHORT).show();
                                     } else {
                                         startActivity(new Intent(RegisterwithEmailActivity.this, LoginActivity.class));
-                                        finish();
+
                                     }
                                 }
                             });
