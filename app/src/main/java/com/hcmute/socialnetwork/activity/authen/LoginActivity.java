@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
-                finish();
+
             }
         });
 
@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 intent.putExtra("fgPass", fgPass);
                 startActivity(intent);
-                finish();
+
             }
         });
     }
@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                                     return;
                                 }
                             }
-                            Toast.makeText(LoginActivity.this,"Kiểm tra tài khoản hoặc mật khẩu",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Kiểm tra tài khoản hoặc mật khẩu của bạn",Toast.LENGTH_SHORT).show();
                         } else {
                             Exception e = task.getException();
                             Log.d(TAG, "error"+e.toString());
@@ -142,6 +142,4 @@ public class LoginActivity extends AppCompatActivity {
         // Kiểm tra số điện thoại có chứa 10 hoặc 11 ký tự và chỉ chứa các chữ số không
         return phoneNumber.matches("^\\d{10,11}$");
     }
-
-
 }
