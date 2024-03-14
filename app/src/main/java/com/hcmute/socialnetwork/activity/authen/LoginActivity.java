@@ -142,6 +142,4 @@ public class LoginActivity extends AppCompatActivity {
         // Kiểm tra số điện thoại có chứa 10 hoặc 11 ký tự và chỉ chứa các chữ số không
         return phoneNumber.matches("^\\d{10,11}$");
     }
-
-
 }

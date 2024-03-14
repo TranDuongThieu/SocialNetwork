@@ -72,14 +72,11 @@ public class RegisterActivity extends CustomActionBarActivity {
             }
         });
     }
-
     private void findID() {
         edtRegisterPhone = findViewById(R.id.edtRegisterPhone);
         btnRegisterNext = findViewById(R.id.btnRegisterNext);
         btnRegisterEmail = findViewById(R.id.btnRegisterEmail);
         btnRegisterHaveAccount = findViewById(R.id.btnRegisterHaveAccount);
         cpp = findViewById(R.id.cpp);
-
     }
-
 }

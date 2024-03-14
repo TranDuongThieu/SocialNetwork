@@ -31,16 +31,13 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainActivity extends CustomActionBarActivity {
-    private FrameLayout frameLayout;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupActionBar();
 
-        frameLayout = findViewById(R.id.frameMainLayout);
         ArrayList<ImageView> imageList = new ArrayList<>();
         imageList.add(findViewById(R.id.action_home));
         imageList.add(findViewById(R.id.action_search));
@@ -103,5 +100,9 @@ public class MainActivity extends CustomActionBarActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameMainLayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    public void init(){
+
     }
 }
