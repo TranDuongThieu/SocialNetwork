@@ -1,4 +1,4 @@
-package com.hcmute.socialnetwork.fragment;
+package com.hcmute.socialnetwork.activity.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
         blogList.add(blog1);
 
         PostListAdapter postListAdapter = new PostListAdapter(user, blogList);
-        ListView postList = view.findViewById(R.id.lvHomePost);
+        ListView postList =  view.findViewById(R.id.lvHomePost);
         postList.setAdapter(postListAdapter);
 
         return view;

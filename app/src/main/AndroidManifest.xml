@@ -42,6 +42,13 @@
             android:parentActivityName=".activity.authen.LoginActivity" />
         <activity
             android:theme="@style/AppTheme"
+            android:name=".activity.fragment.editprofile.EditProfile"
+            android:exported="false"
+            android:parentActivityName=".activity.MainActivity"
+
+             />
+        <activity
+            android:theme="@style/AppTheme"
             android:name=".activity.authen.LoginActivity"
             android:exported="true">
             <intent-filter>

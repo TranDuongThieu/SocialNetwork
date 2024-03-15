@@ -1,31 +1,20 @@
 package com.hcmute.socialnetwork.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.media.Image;
-import android.media.session.PlaybackState;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.activity.CustomActionBar.CustomActionBarActivity;
-import com.hcmute.socialnetwork.fragment.HomeFragment;
-import com.hcmute.socialnetwork.fragment.PostFragment;
-import com.hcmute.socialnetwork.fragment.ProfileFragment;
-import com.hcmute.socialnetwork.fragment.ReelFragment;
-import com.hcmute.socialnetwork.fragment.SearchFragment;
+import com.hcmute.socialnetwork.activity.fragment.HomeFragment;
+import com.hcmute.socialnetwork.activity.fragment.PostFragment;
+import com.hcmute.socialnetwork.activity.fragment.ProfileFragment;
+import com.hcmute.socialnetwork.activity.fragment.ReelFragment;
+import com.hcmute.socialnetwork.activity.fragment.SearchFragment;
 
 import java.util.ArrayList;
 
@@ -43,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
         imageList.add(findViewById(R.id.action_search));
         imageList.add(findViewById(R.id.action_post));
         imageList.add(findViewById(R.id.action_video));
-
         CircleImageView avt = findViewById(R.id.action_profile);
+
         avt.setAlpha(0.6f);
-        setActive(imageList,findViewById(R.id.action_home) );
+        setActive(imageList, findViewById(R.id.action_home));
         replaceFragment(new HomeFragment());
     }
 
@@ -58,22 +47,20 @@ public class MainActivity extends AppCompatActivity {
         imageList.add(findViewById(R.id.action_post));
         imageList.add(findViewById(R.id.action_video));
         CircleImageView avt = findViewById(R.id.action_profile);
-        if (clickedImageView == imageList.get(0)){
+        if (clickedImageView == imageList.get(0)) {
             replaceFragment(new HomeFragment());
-        }
-        else if (clickedImageView == imageList.get(1)){
+        } else if (clickedImageView == imageList.get(1)) {
             replaceFragment(new SearchFragment());
-        }
-        else if (clickedImageView == imageList.get(2)){
+        } else if (clickedImageView == imageList.get(2)) {
             replaceFragment(new PostFragment());
-        }
-        else if (clickedImageView == imageList.get(3)){
+        } else if (clickedImageView == imageList.get(3)) {
             replaceFragment(new ReelFragment());
         }
         avt.setAlpha(0.6f);
         setActive(imageList, clickedImageView);
 
     }
+
     public void onItemClick2(View view) {
         CircleImageView clickedImageView = (CircleImageView) view;
         ArrayList<ImageView> imageList = new ArrayList<>();
@@ -100,9 +87,5 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameMainLayout, fragment);
         fragmentTransaction.commit();
-    }
-
-    public void init(){
-
     }
 }

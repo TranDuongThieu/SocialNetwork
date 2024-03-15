@@ -1,15 +1,12 @@
 package com.hcmute.socialnetwork.adapter;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.hcmute.socialnetwork.fragment.ListPostsFragment;
-import com.hcmute.socialnetwork.fragment.ListPostsVideoFragment;
+import com.hcmute.socialnetwork.activity.fragment.ListPostsFragment;
+import com.hcmute.socialnetwork.activity.fragment.ListPostsVideoFragment;
 
 public class ViewPagerPostAdapter extends FragmentStateAdapter {
 

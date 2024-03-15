@@ -8,9 +8,8 @@ import java.util.ArrayList;
 
 public class User {
     private String userId;
-
-
     private String email;
+    private String userName;
     private String firstName;
     private String lastName;
     private String gender;
@@ -28,7 +27,8 @@ public class User {
     public User() {
     }
 
-    public User(String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+    public User(String userName,String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+        this.userName = userName;
         this.userId = userId;
         this.email = email;
         this.firstName = firstName;
@@ -42,11 +42,15 @@ public class User {
         this.followings = followings;
         this.notifications = notifications;
     }
-
+    public String getUserName() {
+        return userName;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     public String getUserId() {
         return userId;
     }
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
@@ -138,7 +142,6 @@ public class User {
     public void setNotifications(ArrayList<Notification> notifications) {
         this.notifications = notifications;
     }
-
     public static class Notification {
         private String content;
         private LocalTime postedTime;
@@ -147,7 +150,6 @@ public class User {
             this.content = content;
             this.postedTime = postedTime;
         }
-
         public String getContent() {
             return content;
         }

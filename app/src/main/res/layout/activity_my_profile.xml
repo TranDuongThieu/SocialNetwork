@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ProfileFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".activity.fragment.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,9 +52,9 @@
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgAvatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/imgProfileAvatar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginRight="15dp"
                 android:src="@drawable/thumb1" />
 
@@ -66,22 +67,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <TextView
-                        android:id="@+id/txtPostNumber"
+                        android:id="@+id/txtProfilePostNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="54"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="bài viết"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                 </LinearLayout>
 
@@ -90,22 +96,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="15dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <TextView
-                        android:id="@+id/txtFollowerNumber"
+                        android:id="@+id/txtProfileFlNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="54"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="người theo dõi"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                 </LinearLayout>
 
@@ -116,19 +127,23 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtFollowingNumber"
+                        android:id="@+id/txtProfileFlwingNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="54"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="đang theo dõi"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -136,46 +151,47 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/txtFullName"
+            android:id="@+id/txtProfileFullName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="Nhóm 5"
             android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtNote"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Thiết kế ứng dụng di động mạng xã hội" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:layout_marginTop="16dp"
+            >
 
             <Button
-                android:id="@+id/btnEdit"
+                android:id="@+id/btnProfileEdit"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
+                android:layout_height="40dp"
+                android:layout_marginRight="4dp"
                 android:layout_weight="1"
-                android:text="Edit Profile"
+                android:background="@drawable/custom_btn_myprofile"
+                android:text="Chỉnh sửa trang cá nhân"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="12sp"
+                app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/btnShare"
+                android:id="@+id/btnProfileShare"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="4dp"
                 android:layout_weight="1"
-                android:text="Share profile"
+                android:text="Chia sẻ trang cá nhân"
                 android:textColor="@color/black"
-                android:textSize="16sp" />
+                android:textSize="12sp"
+                android:background="@drawable/custom_btn_myprofile"
+                app:backgroundTint="@null"
+                />
 
         </LinearLayout>
 
