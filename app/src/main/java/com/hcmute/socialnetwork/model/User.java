@@ -22,9 +22,6 @@ public class User {
     private ArrayList<User> followings;
     private ArrayList<Notification> notifications;
 
-    public User(String phoneNumber, String firstName, String lastName, String tran, Timestamp now, String number, int thumb1, Object o, Object o1, Object o2, Object o3) {
-    }
-
     public User() {
     }
 

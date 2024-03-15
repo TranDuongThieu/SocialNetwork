@@ -22,9 +22,8 @@ public class ViewPagerFollowAdapter extends FragmentStateAdapter {
                 return new FollowerFragment();
             case 1:
                 return new FollowingFragment();
-            default:
-                return new FollowerFragment();
         }
+        return null;
     }
 
     @Override

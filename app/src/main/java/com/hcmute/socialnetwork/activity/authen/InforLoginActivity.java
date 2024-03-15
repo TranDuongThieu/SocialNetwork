@@ -89,7 +89,6 @@ public class InforLoginActivity extends CustomActionBarActivity {
             return;
         }
             // nếu có 1 đối tượng usermodel được tạo thì gán giá trị cho nó
-        userModel = new User(phoneNumber,firstName,lastName, "Tran", Timestamp.now(), "0966716073", R.drawable.thumb1, null, null, null, null);
         userModel.setFirstName(firstName);
         userModel.setLastName(lastName);
         userModel.setPhoneNumber(phoneNumber);
