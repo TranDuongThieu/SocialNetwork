@@ -35,7 +35,7 @@ public class FollowFragment extends Fragment {
                 case 0:
                     tab.setText("Người theo dõi");
                     break;
-                case 2:
+                case 1:
                     tab.setText("Đang theo dõi");
                     break;
             }

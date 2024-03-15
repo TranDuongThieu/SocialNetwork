@@ -1,5 +1,6 @@
 package com.hcmute.socialnetwork.fragment;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,12 +9,14 @@ import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.adapter.FollowListAdapter;
 import com.hcmute.socialnetwork.model.User;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class FollowerFragment extends Fragment {
@@ -21,6 +24,7 @@ public class FollowerFragment extends Fragment {
     User currentUser = new User();
     ArrayList<User> followerList = currentUser.getFollowers();
     FollowListAdapter adapter;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
