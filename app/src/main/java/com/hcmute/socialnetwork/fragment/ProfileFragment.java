@@ -35,7 +35,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
         // view follow
         LinearLayout follower = view.findViewById(R.id.llViewFollower);
@@ -45,17 +45,16 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 int i = 0;
-                LoadNewFrangment(new FollowFragment());
+                loadFragment(new FollowFragment());
             }
         });
 
         following.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoadNewFrangment(new FollowFragment());
+                loadFragment(new FollowFragment());
             }
         });
-
 
 
         // tab post
@@ -76,13 +75,13 @@ public class ProfileFragment extends Fragment {
             }
         }).attach();
         // edit profile
-//        btnProfileEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getContext(), EditProfile.class));
-//
-//            }
-//        });
+        btnProfileEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), EditProfile.class));
+
+            }
+        });
 
         return view;
     }
