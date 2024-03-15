@@ -4,6 +4,8 @@ import com.google.firebase.Timestamp;
 
 public class Account {
     private String phone;
+    private String email;
+
     private String password;
     private String otp;
     public Account(String phoneNumber, String password, String otp, Timestamp now) {
@@ -17,6 +19,14 @@ public class Account {
         this.password = password;
         this.otp = otp;
     }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
 
     public String getPhone() {
         return phone;

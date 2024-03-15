@@ -10,15 +10,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.activity.CustomActionBar.CustomActionBarActivity;
+import com.hcmute.socialnetwork.activity.MainActivity;
 import com.hcmute.socialnetwork.helper.Validate;
+import com.hcmute.socialnetwork.model.Account;
+import com.hcmute.socialnetwork.model.User;
 
 public class RegisterwithEmailActivity extends CustomActionBarActivity {
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +54,10 @@ public class RegisterwithEmailActivity extends CustomActionBarActivity {
                 EditText emailEditText = findViewById(R.id.edtRegisteremailMail);
                 EditText passwordEditText = findViewById(R.id.edtRegisteremailPass);
                 EditText confirmPasswordEditText = findViewById(R.id.edtRegisteremailCfpass);
+                EditText fNameEditText = findViewById(R.id.edtEmailRegisterFName);
+                EditText lNameEditText = findViewById(R.id.edtEmailRegisterLName);
+                String fName = fNameEditText.getText().toString();
+                String lName = lNameEditText.getText().toString();
                 String email = emailEditText.getText().toString();
                 String password = passwordEditText.getText().toString();
                 String confirmPassword = confirmPasswordEditText.getText().toString();
@@ -55,22 +69,66 @@ public class RegisterwithEmailActivity extends CustomActionBarActivity {
                 } else if (!password.equals(confirmPassword)) {
                     Toast.makeText(RegisterwithEmailActivity.this, "Xác nhận mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Proceed with registration
-                    auth = FirebaseAuth.getInstance();
-                    auth.createUserWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(RegisterwithEmailActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    Toast.makeText(RegisterwithEmailActivity.this, "createUserWithEmail:onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(RegisterwithEmailActivity.this, "Authentication failed." + task.getException(),
-                                                Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        startActivity(new Intent(RegisterwithEmailActivity.this, LoginActivity.class));
 
-                                    }
+                    // Proceed with registration
+                    // Check if email already exists in Firestore
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    CollectionReference accountsRef = db.collection("accounts");
+                    Query query = accountsRef.whereEqualTo("email", email);
+                    query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                if (task.getResult().isEmpty()) {
+
+                                    Account newAccount = new Account();
+                                    newAccount.setEmail(email);
+                                    newAccount.setPassword(password);
+                                    User newUser = new User();
+                                    newUser.setEmail(email);
+                                    newUser.setFirstName((fName));
+                                    newUser.setLastName(lName);
+                                    CollectionReference accountRef = db.collection("account");
+
+                                    CollectionReference usersRef = db.collection("user");
+                                    accountRef.document(email).set(newAccount).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            usersRef.document(email).set(newUser)
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void aVoid) {
+                                                            // User document successfully created
+                                                            Toast.makeText(RegisterwithEmailActivity.this, "User document created successfully", Toast.LENGTH_SHORT).show();
+                                                            Intent intent = new Intent(RegisterwithEmailActivity.this, LoginActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+                                                    })
+                                                    .addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            // Failed to create user document
+                                                            Toast.makeText(RegisterwithEmailActivity.this, "Failed to create user document: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    });
+                                        }
+                                    });
+
+                                    // Email does not exist, proceed with registration
+
+                                } else {
+                                    // Email already exists
+                                    Toast.makeText(RegisterwithEmailActivity.this, "Email đã tồn tại", Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            } else {
+                                // Error occurred while checking email existence
+                                Toast.makeText(RegisterwithEmailActivity.this, "Lỗi khi kiểm tra email: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+
+                    });
                 }
             }
         });

@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,6 +16,7 @@ import com.hcmute.socialnetwork.activity.fragment.PostFragment;
 import com.hcmute.socialnetwork.activity.fragment.ProfileFragment;
 import com.hcmute.socialnetwork.activity.fragment.ReelFragment;
 import com.hcmute.socialnetwork.activity.fragment.SearchFragment;
+import com.hcmute.socialnetwork.model.User;
 
 import java.util.ArrayList;
 
@@ -33,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
         imageList.add(findViewById(R.id.action_post));
         imageList.add(findViewById(R.id.action_video));
         CircleImageView avt = findViewById(R.id.action_profile);
+        User currentUser = User.getInstance();
 
+        Log.i("currnet User", currentUser.toString());
         avt.setAlpha(0.6f);
         setActive(imageList, findViewById(R.id.action_home));
         replaceFragment(new HomeFragment());

@@ -5,15 +5,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Blog {
-
-
     private String blogId;
     private int thumbnail;
     private ArrayList<String> video;
     private String description;
     private LocalDateTime postedAt;
     private String postedBy;
-    private ArrayList<String> likes;
+    private ArrayList<User> likes;
     private ArrayList<Comment> comments;
 
     public String getBlogId() {
@@ -64,11 +62,11 @@ public class Blog {
         this.postedBy = postedBy;
     }
 
-    public ArrayList<String> getLikes() {
+    public ArrayList<User> getLikes() {
         return likes;
     }
 
-    public void setLikes(ArrayList<String> likes) {
+    public void setLikes(ArrayList<User> likes) {
         this.likes = likes;
     }
 
@@ -83,7 +81,7 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(String blogId, int thumbnail, ArrayList<String> video, String description, LocalDateTime postedAt, String postedBy, ArrayList<String> likes, ArrayList<Comment> comments) {
+    public Blog(String blogId, int thumbnail, ArrayList<String> video, String description, LocalDateTime postedAt, String postedBy, ArrayList<User> likes, ArrayList<Comment> comments) {
         this.blogId = blogId;
         this.thumbnail = thumbnail;
         this.video = video;
@@ -96,13 +94,13 @@ public class Blog {
 
 
     public static class Comment {
-        private String userId;
+        private User commentBy;
         private String content;
         private LocalDateTime commentedAt;
         private ArrayList<String> likeCmt;
 
-        public Comment(String userId, String content, LocalDateTime commentedAt, ArrayList<String> likeCmt) {
-            this.userId = userId;
+        public Comment(User commentBy, String content, LocalDateTime commentedAt, ArrayList<String> likeCmt) {
+            this.commentBy = commentBy;
             this.content = content;
             this.commentedAt = commentedAt;
             this.likeCmt = likeCmt;
@@ -111,12 +109,12 @@ public class Blog {
         public Comment() {
         }
 
-        public String getUserId() {
-            return userId;
+        public User commentBy() {
+            return commentBy;
         }
 
-        public void setUserId(String userId) {
-            this.userId = userId;
+        public void setUserId(User commentBy) {
+            this.commentBy = commentBy;
         }
 
         public String getContent() {

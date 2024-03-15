@@ -64,9 +64,11 @@ public class HomeFragment extends Fragment {
         blog.setPostedBy(user.getFirstName() + " " + user.getLastName());
 
         // Set likes (replace with user IDs who liked the blog)
-        ArrayList<String> likes = new ArrayList<>();
-        likes.add("user1");
-        likes.add("user2");
+        ArrayList<User> likes = new ArrayList<>();
+        User user1 = new User(); user1.setEmail("email1");
+        User user2 = new User(); user1.setEmail("email2");
+        likes.add(user1);
+        likes.add(user1);
         blog.setLikes(likes);
 
         // Set comments (replace with fake comments)
@@ -78,15 +80,16 @@ public class HomeFragment extends Fragment {
 
     private static ArrayList<Blog.Comment> createFakeComments(User user) {
         ArrayList<Blog.Comment> comments = new ArrayList<>();
-
+        User user1 = new User(); user1.setEmail("email1");
+        User user2 = new User(); user1.setEmail("email2");
         // Create fake comments
         Blog.Comment comment1 = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            comment1 = new Blog.Comment("user1", "Great post!", LocalDateTime.now(), new ArrayList<>());
+            comment1 = new Blog.Comment(user1, "Great post!", LocalDateTime.now(), new ArrayList<>());
         }
         Blog.Comment comment2 = null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            comment2 = new Blog.Comment("user2", "Nice content!", LocalDateTime.now().minusHours(1), new ArrayList<>());
+            comment2 = new Blog.Comment(user2, "Nice content!", LocalDateTime.now().minusHours(1), new ArrayList<>());
         }
 
         comments.add(comment1);

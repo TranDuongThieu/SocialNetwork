@@ -15,25 +15,20 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.activity.MainActivity;
 import com.hcmute.socialnetwork.helper.Validate;
+import com.hcmute.socialnetwork.model.User;
 
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
-    Button registerBtn,loginBtn,btnForgotpassword;
-    EditText emailOrPhoneEditText,  passwordEditText;
+    Button registerBtn, loginBtn, btnForgotpassword;
+    EditText emailOrPhoneEditText, passwordEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +56,9 @@ public class LoginActivity extends AppCompatActivity {
                 } else {
                     // Kiểm tra xem người dùng đã nhập số điện thoại hay địa chỉ email
                     if (isPhoneNumberValid(emailOrPhone)) {
-                        emailOrPhone = "+"+emailOrPhone;
+                        emailOrPhone = "+" + emailOrPhone;
                         // Đăng nhập bằng số điện thoại
-                        signInWithPhoneNumber(emailOrPhone,password);
+                        signInWithPhoneNumber(emailOrPhone, password);
                     } else if (Validate.isEmailValid(emailOrPhone)) {
                         // Đăng nhập bằng địa chỉ email
                         signInWithEmailAndPassword(emailOrPhone, password);
@@ -86,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void init(){
+    public void init() {
         registerBtn = findViewById(R.id.btnRegister);
         loginBtn = findViewById(R.id.btnLogin);
         btnForgotpassword = findViewById(R.id.btnForgotpassword);
@@ -94,52 +89,137 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.edtLoginPass);
     }
 
-    private void signInWithPhoneNumber(String emailOrPhone, String passWord) {
-        // Tạo tham chiếu đến Firestore
+    private void signInWithPhoneNumber(String phone, String passwordInput) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        // Thực hiện truy vấn để lấy dữ liệu từ Firestore
+
+        // Perform a query to retrieve the user document based on the provided email and password
         db.collection("account")
+                .whereEqualTo("phone", phone)
+                .whereEqualTo("password", passwordInput)
+                .limit(1) // Limit the result to 1 document
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            for (DocumentSnapshot document : task.getResult()) {
-                                String phone = document.getString("phone");
-                                String pass = document.getString("password");
-                                if (phone.equals(emailOrPhone) && pass.equals(passWord)) {
-                                    Toast.makeText(LoginActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                    finish();
-                                    return;
-                                }
+                            // Check if any document is returned
+                            if (!task.getResult().isEmpty()) {
+                                // Retrieve the user document from the "user" collection based on the email
+                                db.collection("user")
+                                        .whereEqualTo("phoneNumber", phone)
+                                        .limit(1) // Limit the result to 1 document
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (DocumentSnapshot userDocument : task.getResult()) {
+                                                        // Convert the user document to a User object
+                                                        User loginUser = userDocument.toObject(User.class);
+                                                        setCurrentUser(loginUser);
+                                                        // Set CurrentUser with the retrieved user information
+
+                                                        // Set other user properties as needed
+                                                    }
+                                                    // Sign in successful, proceed to main activity
+                                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                    finish();
+                                                } else {
+                                                    // Error occurred while retrieving user document
+                                                    Toast.makeText(LoginActivity.this, "Lỗi khi lấy thông tin người dùng: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } else {
+                                // No user found with matching email and password
+                                Toast.makeText(LoginActivity.this, "Kiểm tra tài khoản hoặc mật khẩu của bạn", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(LoginActivity.this,"Kiểm tra tài khoản hoặc mật khẩu của bạn",Toast.LENGTH_SHORT).show();
                         } else {
+                            // Error occurred while querying Firestore
                             Exception e = task.getException();
-                            Log.d(TAG, "error"+e.toString());
+                            Log.d(TAG, "error" + e.toString());
                         }
                     }
                 });
     }
 
-    public void signInWithEmailAndPassword(String email, String password) {
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+    public void signInWithEmailAndPassword(String emailInput, String passwordInput) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Perform a query to retrieve the user document based on the provided email and password
+        db.collection("account")
+                .whereEqualTo("email", emailInput)
+                .whereEqualTo("password", passwordInput)
+                .limit(1) // Limit the result to 1 document
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful())
-                            Toast.makeText(LoginActivity.this, "Đăng nhập không thành công", Toast.LENGTH_SHORT).show();
-                        else {
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                            finish();
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Check if any document is returned
+                            if (!task.getResult().isEmpty()) {
+                                // Retrieve the user document from the "user" collection based on the email
+                                db.collection("user")
+                                        .whereEqualTo("email", emailInput)
+                                        .limit(1) // Limit the result to 1 document
+                                        .get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    for (DocumentSnapshot userDocument : task.getResult()) {
+                                                        // Convert the user document to a User object
+                                                        User loginUser = userDocument.toObject(User.class);
+                                                        setCurrentUser(loginUser);
+                                                        // Set CurrentUser with the retrieved user information
+
+                                                        // Set other user properties as needed
+                                                    }
+                                                    // Sign in successful, proceed to main activity
+                                                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                    finish();
+                                                } else {
+                                                    // Error occurred while retrieving user document
+                                                    Toast.makeText(LoginActivity.this, "Lỗi khi lấy thông tin người dùng: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } else {
+                                // No user found with matching email and password
+                                Toast.makeText(LoginActivity.this, "Kiểm tra tài khoản hoặc mật khẩu của bạn", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            // Error occurred while querying Firestore
+                            Exception e = task.getException();
+                            Log.d(TAG, "error" + e.toString());
                         }
                     }
                 });
     }
+
     public boolean isPhoneNumberValid(String phoneNumber) {
         // Kiểm tra số điện thoại có chứa 10 hoặc 11 ký tự và chỉ chứa các chữ số không
         return phoneNumber.matches("^\\d{10,11}$");
+    }
+
+    public void setCurrentUser(User user) {
+        User currentUser = User.getInstance();
+
+        currentUser.setEmail(user.getEmail());
+        currentUser.setUserName(user.getUserName());
+        currentUser.setFirstName(user.getFirstName());
+        currentUser.setLastName(user.getLastName());
+        currentUser.setAvatar(user.getAvatar());
+        currentUser.setBlogs(user.getBlogs());
+        currentUser.setUserId(user.getUserId());
+        currentUser.setFollowers(user.getFollowers());
+        currentUser.setFollowings(user.getFollowings());
+        currentUser.setGender(user.getGender());
+        currentUser.setDateOfBirth(user.getDateOfBirth());
+        currentUser.setPhoneNumber(user.getPhoneNumber());
+
+
     }
 }

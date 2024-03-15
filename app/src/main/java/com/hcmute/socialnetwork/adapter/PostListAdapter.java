@@ -103,10 +103,9 @@ public class PostListAdapter extends BaseAdapter {
 //            holder.video.setVisibility(View.GONE);
 //        }
 
-        User userLogin = new User();
-        userLogin.setUserId("2");
-        userLogin.setLastName("Thiu2");
-        if (blog.getLikes().contains(userLogin.getUserId())) {
+        User userLogin = User.getInstance();
+
+        if (blog.getLikes().contains(userLogin)) {
             holder.likeButton.setImageResource(R.drawable.fill_heart_icon);
         } else
             holder.likeButton.setImageResource(R.drawable.heart_icon);
@@ -115,14 +114,14 @@ public class PostListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Blog blog = (Blog) getItem(position);
-                ArrayList<String> likesList = blog.getLikes();
-                if (likesList.contains(userLogin.getUserId())) {
+                ArrayList<User > likesList = blog.getLikes();
+                if (likesList.contains(userLogin)) {
                     // User already liked, so remove the like
-                    likesList.remove(userLogin.getUserId());
+                    likesList.remove(userLogin);
 
                 } else {
                     // User hasn't liked, so add the like
-                    likesList.add(userLogin.getUserId());
+                    likesList.add(userLogin);
                     animateHeartImage(holder.heartImg);
                 }
                 blog.setLikes(likesList);

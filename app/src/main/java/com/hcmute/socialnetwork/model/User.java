@@ -7,19 +7,26 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class User {
-    private String userId;
-    private String email;
-    private String userName;
-    private String firstName;
-    private String lastName;
-    private String gender;
-    private LocalDate dateOfBirth;
-    private String phoneNumber;
-    private int avatar;
-    private ArrayList<String> blogs;
-    private ArrayList<String> followers;
-    private ArrayList<String> followings;
-    private ArrayList<Notification> notifications;
+    private static User instance;
+    public static User getInstance() {
+        if (instance == null) {
+            instance = new User();
+        }
+        return instance;
+    }
+    private String userId = ""; // Default value for String is an empty string
+    private String email = "";
+    private String userName = "";
+    private String firstName = "";
+    private String lastName = "";
+    private String gender = "";
+    private LocalDate dateOfBirth ; // Default value is current date
+    private String phoneNumber = "";
+    private int avatar = 0; // Default value for int is 0
+    private ArrayList<Blog> blogs = new ArrayList<>(); // Default empty list
+    private ArrayList<User> followers = new ArrayList<>();
+    private ArrayList<User> followings = new ArrayList<>();
+    private ArrayList<Notification> notifications = new ArrayList<>();
 
     public User(String phoneNumber, String firstName, String lastName, Timestamp now) {
     }
@@ -27,21 +34,7 @@ public class User {
     public User() {
     }
 
-    public User(String userName,String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
-        this.userName = userName;
-        this.userId = userId;
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
-        this.dateOfBirth = dateOfBirth;
-        this.phoneNumber = phoneNumber;
-        this.avatar = avatar;
-        this.blogs = blogs;
-        this.followers = followers;
-        this.followings = followings;
-        this.notifications = notifications;
-    }
+
     public String getUserName() {
         return userName;
     }
@@ -111,28 +104,44 @@ public class User {
         this.avatar = avatar;
     }
 
-    public ArrayList<String> getBlogs() {
+    public ArrayList<Blog> getBlogs() {
         return blogs;
     }
 
-    public void setBlogs(ArrayList<String> blogs) {
+    public void setBlogs(ArrayList<Blog> blogs) {
         this.blogs = blogs;
     }
 
-    public ArrayList<String> getFollowers() {
+    public ArrayList<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(ArrayList<String> followers) {
+    public void setFollowers(ArrayList<User> followers) {
         this.followers = followers;
     }
 
-    public ArrayList<String> getFollowings() {
+    public ArrayList<User> getFollowings() {
         return followings;
     }
 
-    public void setFollowings(ArrayList<String> followings) {
+    public void setFollowings(ArrayList<User> followings) {
         this.followings = followings;
+    }
+
+    public User(String userId, String email, String userName, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<Blog> blogs, ArrayList<User> followers, ArrayList<User> followings, ArrayList<Notification> notifications) {
+        this.userId = userId;
+        this.email = email;
+        this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.gender = gender;
+        this.dateOfBirth = dateOfBirth;
+        this.phoneNumber = phoneNumber;
+        this.avatar = avatar;
+        this.blogs = blogs;
+        this.followers = followers;
+        this.followings = followings;
+        this.notifications = notifications;
     }
 
     public ArrayList<Notification> getNotifications() {
@@ -165,5 +174,24 @@ public class User {
         public void setPostedTime(LocalTime postedTime) {
             this.postedTime = postedTime;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "CurrentUser{" +
+                "userId='" + userId + '\'' +
+                ", email='" + email + '\'' +
+                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", phoneNumber='" + phoneNumber.toString() + '\'' +
+                ", avatar=" + avatar +
+                ", blogs=" + blogs.size() +
+                ", followers=" + followers.size() +
+                ", followings=" + followings.size() +
+                ", notifications=" + notifications.size() +
+                '}';
     }
 }
