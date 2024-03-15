@@ -3,6 +3,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="login_button">#0095F6</color>
+    <!--Không màu, màu trong suốt-->
     <color name="transparent">#00000000</color>
-
+    <color name="primary">#66CDD5</color>
 </resources>

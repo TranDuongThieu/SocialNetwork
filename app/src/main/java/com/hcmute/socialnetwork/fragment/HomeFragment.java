@@ -1,48 +1,49 @@
-package com.hcmute.socialnetwork.activity.home;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.hcmute.socialnetwork.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.activity.adapter.PostListAdapter;
+import com.hcmute.socialnetwork.adapter.PostListAdapter;
 import com.hcmute.socialnetwork.model.Blog;
 import com.hcmute.socialnetwork.model.User;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.time.*;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class Home extends AppCompatActivity {
+public class HomeFragment extends Fragment {
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         User user = new User();
+        user.setUserId("1");
         user.setFirstName("Tran");
         user.setLastName("Thiu");
-        user.setAvatar(R.drawable.logo_instagram);
+        user.setAvatar(R.drawable.thumb1);
 
         Blog blog = createFakeBlog(user, R.drawable.logo_instagram);
         Blog blog1 = createFakeBlog(user, R.drawable.thumb1);
-        ArrayList<Blog> blogList = new ArrayList<Blog>();
-        ArrayList<User> likes = new ArrayList<User>();
-        likes.add(user);
+        ArrayList<Blog> blogList = new ArrayList<>();
         blogList.add(blog);
         blogList.add(blog1);
-        blogList.add(blog);
-        blogList.add(blog1);
-        blogList.add(blog);
-        PostListAdapter postListAdapter = new PostListAdapter(user, blogList, likes);
-        ListView postList = findViewById(R.id.lvHomePost);
+
+        PostListAdapter postListAdapter = new PostListAdapter(user, blogList);
+        ListView postList = view.findViewById(R.id.lvHomePost);
         postList.setAdapter(postListAdapter);
 
-
+        return view;
     }
 
     private static Blog createFakeBlog(User user, int thumb) {
@@ -51,13 +52,12 @@ public class Home extends AppCompatActivity {
         // Set thumbnail (assuming it's an integer, replace with appropriate data)
         blog.setThumbnail(thumb);
 
-
         blog.setDescription("This is a fake blog post.");
-
 
         // Set posted date and time
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            blog.setPostedAt(LocalDateTime.of(2024, 2, 28, 6, 20));
+            Random rand = new Random();
+            blog.setPostedAt(LocalDateTime.of(2023, rand.nextInt(12) + 1, rand.nextInt(28) + 1, 6, 20));
         }
 
         // Set posted by user

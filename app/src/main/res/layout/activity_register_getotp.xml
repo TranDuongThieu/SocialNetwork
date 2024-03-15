@@ -3,7 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".activity.authen.GetOTP">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,9 +19,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nhập mã xác nhận"
-            android:textSize="25dp"
+            android:textSize="26sp"
             android:textColor="@color/black"
             android:textStyle="bold"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             />
         <TextView
@@ -26,47 +30,61 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Để xác nhận tài khoản của bạn, hãy nhập mã gồm 6 chữ số mà chúng tôi đã gửi đến tài khoản gmail"
-            android:textSize="15sp"
+            android:textSize="12sp"
             />
-        <EditText
-            android:id="@+id/edtsetOTP"
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mã xác nhận"
-            android:inputType="text"
-            android:textSize="15sp"
-            android:background="@drawable/custom_edt_email_pass"
-            android:paddingLeft="12dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="24dp"
+            app:helperText="Yêu cầu*"
+            app:helperTextTextColor="#CA0F0F"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
+            app:endIconMode="clear_text"
             >
-            <requestFocus/>
-        </EditText>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtRegisterInputGetotp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/custom_edt_email_pass"
+                android:textSize="16sp"
+                android:inputType="number"
+                android:maxLength="8"
+                android:paddingLeft="16dp"
+                >
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
 
         <Button
-            android:id="@+id/btnNext"
+            android:id="@+id/btnRegisterNextOTP"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/custom_btn_login"
             android:text="Tiếp"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:fontFamily="sans-serif-light"
 
             app:backgroundTint="@null"
              />
 
         <Button
-            android:id="@+id/btnReturnotp"
+            android:id="@+id/btnRegisterResentOtp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/custom_btn_otp"
             android:fontFamily="sans-serif-light"
             android:text="Tôi không nhận được mã"
-            android:textSize="15sp"
+            android:textSize="16sp"
             app:backgroundTint="@null"
             android:textColor="#202D35"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             />
     </LinearLayout>
 
