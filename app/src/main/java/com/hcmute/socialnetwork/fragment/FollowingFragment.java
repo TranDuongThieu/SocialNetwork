@@ -28,8 +28,10 @@ public class FollowingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_follow_list, container, false);
         lvFollowing = view.findViewById(R.id.lvfollow);
 
-        User newUser1 = new User("3", null, "Loc","Vu", null, "0923654567", R.drawable.thumb1, null, null, null, null);
-        User newUser2 = new User("4", null, "Thieu","Tran", null, "0998876345", R.drawable.thumb1, null, null, null, null);
+        User newUser1 = new User();
+        newUser1.setFirstName("user3");
+        User newUser2 = new User();
+        newUser2.setFirstName("user4");
         followingList.add(newUser1);
         followingList.add(newUser2);
 

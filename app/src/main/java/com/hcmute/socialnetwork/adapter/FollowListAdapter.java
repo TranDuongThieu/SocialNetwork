@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.fragment.FollowerFragment;
 import com.hcmute.socialnetwork.model.User;
 
 import java.util.ArrayList;

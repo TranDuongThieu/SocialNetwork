@@ -1,4 +1,4 @@
-package com.hcmute.socialnetwork.activity.fragment.editprofile;
+package com.hcmute.socialnetwork.fragment.editprofile;
 
 import android.os.Bundle;
 import android.view.MenuItem;

@@ -27,8 +27,10 @@ public class FollowerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_follow_list, container, false);
         lvFollower = view.findViewById(R.id.lvfollow);
 
-        User newUser1 = new User("1", null, "Minh","Tran", null, "0966716073", R.drawable.thumb1, null, null, null, null);
-        User newUser2 = new User("2", null, "Thuong","Trinh", null, "0923456765", R.drawable.thumb1, null, null, null, null);
+        User newUser1 = new User();
+        newUser1.setFirstName("User1");
+        User newUser2 = new User();
+        newUser2.setFirstName("User2");
         followerList.add(newUser1);
         followerList.add(newUser2);
 
