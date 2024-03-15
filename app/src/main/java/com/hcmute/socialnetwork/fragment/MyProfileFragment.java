@@ -24,38 +24,18 @@ import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.fragment.editprofile.EditProfile;
 import com.hcmute.socialnetwork.adapter.ViewPagerPostAdapter;
 
-public class ProfileFragment extends Fragment {
+public class MyProfileFragment extends Fragment {
     TabLayout tabLayoutPosts;
     ViewPager2 viewPagerPost;
     ViewPagerPostAdapter viewPagerPostAdapter;
-
+    Button btnProfileShare, btnProfileEdit;
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        // view follow
-        LinearLayout follower = view.findViewById(R.id.llViewFollower);
-        LinearLayout following = view.findViewById(R.id.llViewFollowing);
-
-        follower.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = 0;
-                loadFragment(new FollowFragment());
-            }
-        });
-
-        following.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loadFragment(new FollowFragment());
-            }
-        });
-
+        View view = inflater.inflate(R.layout.fragment_my_profile, container, false);
 
         // tab post
         tabLayoutPosts = view.findViewById(R.id.tabLayoutPosts);
@@ -74,6 +54,14 @@ public class ProfileFragment extends Fragment {
                     break;
             }
         }).attach();
+        // edit profile
+        btnProfileEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), EditProfile.class));
+
+            }
+        });
 
         return view;
     }
@@ -81,11 +69,13 @@ public class ProfileFragment extends Fragment {
     private void findID(View view) {
         tabLayoutPosts = view.findViewById(R.id.tabLayoutPosts);
         viewPagerPost = view.findViewById(R.id.viewPagerPosts);
+        btnProfileShare = view.findViewById(R.id.btnProfileShare);
+        btnProfileEdit = view.findViewById(R.id.btnProfileEdit);
     }
 
     private void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.frameMainLayout, fragment);
+        transaction.replace(R.id.llFragmentFollow, fragment);
         transaction.commit();
     }
 }

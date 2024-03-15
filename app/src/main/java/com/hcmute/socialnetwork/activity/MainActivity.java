@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.fragment.HomeFragment;
+import com.hcmute.socialnetwork.fragment.MyProfileFragment;
 import com.hcmute.socialnetwork.fragment.PostFragment;
 import com.hcmute.socialnetwork.fragment.ProfileFragment;
 import com.hcmute.socialnetwork.fragment.ReelFragment;
