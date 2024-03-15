@@ -3,5 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#34A853">
+    <GridView
+        android:id="@+id/gvThumb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="3"
+        android:columnWidth="0dp"
+        android:stretchMode="columnWidth"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="10dp"/>
+
 
 </LinearLayout>
