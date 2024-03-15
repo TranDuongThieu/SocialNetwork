@@ -5,11 +5,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -29,6 +32,20 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        // view follow
+        LinearLayout follower = view.findViewById(R.id.llViewFollower);
+        LinearLayout following = view.findViewById(R.id.llViewFollowing);
+
+        follower.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadFragment(new FollowFragment());
+            }
+        });
+
+
+
+        // tab post
         tabLayoutPosts = view.findViewById(R.id.tabLayoutPosts);
         viewPagerPost = view.findViewById(R.id.viewPagerPosts);
 
@@ -47,5 +64,11 @@ public class ProfileFragment extends Fragment {
         }).attach();
 
         return view;
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.llFragmentFollow, fragment);
+        transaction.commit();
     }
 }

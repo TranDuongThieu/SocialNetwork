@@ -18,17 +18,17 @@ public class User {
     private String phoneNumber;
     private int avatar;
     private ArrayList<String> blogs;
-    private ArrayList<String> followers;
-    private ArrayList<String> followings;
+    private ArrayList<User> followers;
+    private ArrayList<User> followings;
     private ArrayList<Notification> notifications;
 
-    public User(String phoneNumber, String firstName, String lastName, Timestamp now) {
+    public User(String phoneNumber, String firstName, String lastName, String tran, Timestamp now, String number, int thumb1, Object o, Object o1, Object o2, Object o3) {
     }
 
     public User() {
     }
 
-    public User(String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<String> followers, ArrayList<String> followings, ArrayList<Notification> notifications) {
+    public User(String userId, String email, String firstName, String lastName, String gender, LocalDate dateOfBirth, String phoneNumber, int avatar, ArrayList<String> blogs, ArrayList<User> followers, ArrayList<User> followings, ArrayList<Notification> notifications) {
         this.userId = userId;
         this.email = email;
         this.firstName = firstName;
@@ -115,19 +115,19 @@ public class User {
         this.blogs = blogs;
     }
 
-    public ArrayList<String> getFollowers() {
+    public ArrayList<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(ArrayList<String> followers) {
+    public void setFollowers(ArrayList<User> followers) {
         this.followers = followers;
     }
 
-    public ArrayList<String> getFollowings() {
+    public ArrayList<User> getFollowings() {
         return followings;
     }
 
-    public void setFollowings(ArrayList<String> followings) {
+    public void setFollowings(ArrayList<User> followings) {
         this.followings = followings;
     }
 

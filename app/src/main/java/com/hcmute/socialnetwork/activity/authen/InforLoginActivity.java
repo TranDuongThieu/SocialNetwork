@@ -1,10 +1,7 @@
 package com.hcmute.socialnetwork.activity.authen;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,11 +12,6 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthProvider;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.activity.CustomActionBar.CustomActionBarActivity;
 import com.hcmute.socialnetwork.activity.MainActivity;
@@ -97,7 +89,7 @@ public class InforLoginActivity extends CustomActionBarActivity {
             return;
         }
             // nếu có 1 đối tượng usermodel được tạo thì gán giá trị cho nó
-        userModel = new User(phoneNumber,firstName,lastName, Timestamp.now());
+        userModel = new User(phoneNumber,firstName,lastName, "Tran", Timestamp.now(), "0966716073", R.drawable.thumb1, null, null, null, null);
         userModel.setFirstName(firstName);
         userModel.setLastName(lastName);
         userModel.setPhoneNumber(phoneNumber);
