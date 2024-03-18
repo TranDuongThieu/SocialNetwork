@@ -1,30 +1,41 @@
 package com.hcmute.socialnetwork.activity.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.activity.fragment.editprofile.EditProfile;
 import com.hcmute.socialnetwork.adapter.ViewPagerPostAdapter;
+import com.hcmute.socialnetwork.utils.AdroidUtils;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ProfileFragment extends Fragment {
      TabLayout tabLayoutPosts;
      ViewPager2 viewPagerPost;
      ViewPagerPostAdapter viewPagerPostAdapter;
      Button btnProfileShare, btnProfileEdit;
+
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
@@ -43,12 +54,12 @@ public class ProfileFragment extends Fragment {
                     break;
             }
         }).attach();
+
         // edit profile
         btnProfileEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), EditProfile.class));
-
             }
         });
         return view;
