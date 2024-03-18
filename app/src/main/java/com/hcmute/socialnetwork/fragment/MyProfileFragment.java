@@ -1,9 +1,7 @@
 package com.hcmute.socialnetwork.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+<<<<<<<< HEAD:app/src/main/java/com/hcmute/socialnetwork/fragment/MyProfileFragment.java
 import androidx.annotation.FloatRange;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+========
+>>>>>>>> 8978964 (fixx):app/src/main/java/com/hcmute/socialnetwork/fragment/ProfileFragment.java
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -22,12 +23,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hcmute.socialnetwork.R;
 import com.hcmute.socialnetwork.fragment.editprofile.EditProfile;
 import com.hcmute.socialnetwork.adapter.ViewPagerPostAdapter;
+<<<<<<<< HEAD:app/src/main/java/com/hcmute/socialnetwork/fragment/MyProfileFragment.java
 import com.hcmute.socialnetwork.utils.AdroidUtils;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -38,6 +39,15 @@ public class MyProfileFragment extends Fragment {
     ViewPager2 viewPagerPost;
     ViewPagerPostAdapter viewPagerPostAdapter;
     Button btnProfileShare, btnProfileEdit;
+========
+
+public class ProfileFragment extends Fragment {
+     TabLayout tabLayoutPosts;
+     ViewPager2 viewPagerPost;
+     ViewPagerPostAdapter viewPagerPostAdapter;
+     Button btnProfileShare, btnProfileEdit;
+
+>>>>>>>> 8978964 (fixx):app/src/main/java/com/hcmute/socialnetwork/fragment/ProfileFragment.java
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override

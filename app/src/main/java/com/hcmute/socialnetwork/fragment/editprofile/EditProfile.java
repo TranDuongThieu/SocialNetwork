@@ -1,28 +1,18 @@
 package com.hcmute.socialnetwork.fragment.editprofile;
 
-import static java.security.AccessController.getContext;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.dhaval2404.imagepicker.ImagePicker;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.UploadTask;
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.activity.CustomActionBar.CustomActionBarActivity;
-import com.hcmute.socialnetwork.activity.fragment.ProfileFragment;
 import com.hcmute.socialnetwork.model.User;
 import com.hcmute.socialnetwork.utils.AdroidUtils;
 import com.hcmute.socialnetwork.utils.FirebaseUtils;
