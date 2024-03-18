@@ -47,7 +47,10 @@ public class ProfileFragment extends Fragment {
      ViewPagerPostAdapter viewPagerPostAdapter;
      Button btnProfileShare, btnProfileEdit;
 
+<<<<<<<< HEAD:app/src/main/java/com/hcmute/socialnetwork/fragment/MyProfileFragment.java
 >>>>>>>> 8978964 (fixx):app/src/main/java/com/hcmute/socialnetwork/fragment/ProfileFragment.java
+========
+>>>>>>>> 89789645b79b9c43b8c1cf1e9918cc5d36755176:app/src/main/java/com/hcmute/socialnetwork/fragment/ProfileFragment.java
     @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
