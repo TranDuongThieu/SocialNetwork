@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfileAvatar"
+            android:id="@+id/imgEditProfileAvatar"
             android:layout_width="90dp"
             android:layout_height="90dp"
             android:layout_gravity="center_horizontal"
