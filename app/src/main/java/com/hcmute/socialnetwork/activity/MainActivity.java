@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.hcmute.socialnetwork.R;
-import com.hcmute.socialnetwork.activity.fragment.HomeFragment;
-import com.hcmute.socialnetwork.activity.fragment.PostFragment;
-import com.hcmute.socialnetwork.activity.fragment.ProfileFragment;
-import com.hcmute.socialnetwork.activity.fragment.ReelFragment;
-import com.hcmute.socialnetwork.activity.fragment.SearchFragment;
+import com.hcmute.socialnetwork.fragment.HomeFragment;
+import com.hcmute.socialnetwork.fragment.PostFragment;
+import com.hcmute.socialnetwork.fragment.ProfileFragment;
+import com.hcmute.socialnetwork.fragment.ReelFragment;
+import com.hcmute.socialnetwork.fragment.SearchFragment;
 
 import java.util.ArrayList;
 

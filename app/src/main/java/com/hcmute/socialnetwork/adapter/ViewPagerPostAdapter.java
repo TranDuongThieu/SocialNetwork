@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.hcmute.socialnetwork.activity.fragment.ListPostsFragment;
-import com.hcmute.socialnetwork.activity.fragment.ListPostsVideoFragment;
+import com.hcmute.socialnetwork.fragment.ListPostsFragment;
+import com.hcmute.socialnetwork.fragment.ListPostsVideoFragment;
 
 public class ViewPagerPostAdapter extends FragmentStateAdapter {
 

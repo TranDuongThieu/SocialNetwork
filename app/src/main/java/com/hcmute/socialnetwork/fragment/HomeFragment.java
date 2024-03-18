@@ -1,4 +1,4 @@
-package com.hcmute.socialnetwork.activity.fragment;
+package com.hcmute.socialnetwork.fragment;
 
 import android.os.Build;
 import android.os.Bundle;
